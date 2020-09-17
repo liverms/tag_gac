@@ -17,20 +17,25 @@ generic_error = 'Select a valid choice. That choice is not one of the available 
 
 
 class RequiredFieldsForm(forms.Form):
-    """[summary]
+    """All the fields in this form are required.
+    However, for the code field required is set to False.
+    Also, for the template this is associated with novalidate 
+    is specified.
+
+    This is because it was difficult to stop the client-side
+    validation the GC uses for autocomplete fields.  This is because
+    when the page first renders this field is empty. Instead this
+    relies on the use of a clean method for this field to ensure
+    the user has input the correct information.
+
+    The autocomplete fields rely on a View and a url to work.
+    The url is specified in the widget.
 
     Args:
-        forms ([type]): [description]
-
-    Raises:
-        ValidationError: [description]
-        ValidationError: [description]
-        ValidationError: [description]
-        ValidationError: [description]
-        ValidationError: [description]
+        forms ([class]): Form Class
 
     Returns:
-        [type]: [description]
+        [class]: Returns form with the fields below.
     """
     estimated_value = forms.IntegerField(
         label = estimated_value_label,
@@ -43,37 +48,56 @@ class RequiredFieldsForm(forms.Form):
         Organization.objects.all(),
         label = entities_label,
         required = True,
-        widget=autocomplete.ModelSelect2(url='guide:entities_autocomplete', attrs={'class':'form-control'})
+        widget=autocomplete.ModelSelect2(
+            url='guide:entities_autocomplete', 
+            attrs={'class':'form-control'}
+        )
     )
 
     type = forms.ModelChoiceField(
         CommodityType.objects.all(),
         label = type_label,
         required = True,
-        widget = autocomplete.ModelSelect2(url='guide:type_autocomplete', attrs={'class':'form-control'})
+        widget = autocomplete.ModelSelect2(
+            url='guide:type_autocomplete', 
+            attrs={'class':'form-control'}
+            )
     )
 
     code = forms.ModelChoiceField(
         Code.objects.only('code').all(),
         label = code_label,
         required = False,
-        widget = autocomplete.ModelSelect2(url = 'guide:code_autocomplete', forward=['type'], attrs={'class':'form-control', 'size': '1'})
+        widget = autocomplete.ModelSelect2(
+            url = 'guide:code_autocomplete', 
+            forward=['type'], 
+            attrs={'class':'form-control', 'size': '1'}
+        )
     )
 
-
     def clean_code(self):
-        
+        """Clean the code field for validation after
+        the user submits the form.
+
+        Raises:
+            ValidationError: Raise warning to user
+            to select valid Commodity Code
+
+        Returns:
+            [str]: Str of user-selected code
+        """
         code = self.cleaned_data['code']
         if Code.objects.filter(code = code).exists():
             return code
         else:
             raise ValidationError(generic_error)
 
+
 class GeneralExceptionForm(forms.Form):
-    """[summary]
+    """Form for general exceptions.
 
     Args:
-        forms ([type]): [description]
+        forms ([class]): Form class
     """
     exceptions = forms.ModelMultipleChoiceField(
         GeneralException.objects.only('name'),
@@ -86,10 +110,10 @@ class GeneralExceptionForm(forms.Form):
 
 
 class LimitedTenderingForm(forms.Form):
-    """[summary]
+    """Limited Tendering Form
 
     Args:
-        forms ([type]): [description]
+        forms ([class]): Form class
     """
     limited_tendering = forms.ModelMultipleChoiceField(
         LimitedTenderingReason.objects.only('name'),
@@ -102,10 +126,10 @@ class LimitedTenderingForm(forms.Form):
 
 
 class CftaExceptionForm(forms.Form):
-    """[summary]
+    """CFTA form
 
     Args:
-        forms ([type]): [description]
+        forms ([class]): Form class
     """
     cfta_exceptions = forms.ModelMultipleChoiceField(
         CftaException.objects.only('name'),

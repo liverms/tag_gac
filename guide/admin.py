@@ -5,9 +5,13 @@ from import_export.admin import ImportExportModelAdmin
 from modeltranslation.admin import TranslationAdmin
 from guide.models import AGREEMENTS_FIELDS
 
+"""Model resources defines how objects are mapped to their 
+import and export representations and handle importing and exporting data.
+"""
 
-# Model resources
+
 class ConstructionCoverageResource(resources.ModelResource):
+
 
     class Meta:
         model = models.ConstructionCoverage
@@ -15,11 +19,13 @@ class ConstructionCoverageResource(resources.ModelResource):
 
 class GoodsCoverageResource(resources.ModelResource):
 
+
     class Meta:
         model = models.GoodsCoverage
 
 
 class CodeOrganizationExclusionResource(resources.ModelResource):
+
 
     class Meta:
         model = models.CodeOrganizationExclusion
@@ -27,11 +33,13 @@ class CodeOrganizationExclusionResource(resources.ModelResource):
 
 class CommodityTypeResource(resources.ModelResource):
 
+
     class Meta:
         model = models.CommodityType
 
 
 class CodeResource(resources.ModelResource):
+
 
     class Meta:
         model = models.Code
@@ -39,11 +47,13 @@ class CodeResource(resources.ModelResource):
 
 class GeneralExceptionResource(resources.ModelResource):
 
+
     class Meta:
         model = models.GeneralException
 
 
 class TenderingReasonResource(resources.ModelResource):
+
 
     class Meta:
         model = models.LimitedTenderingReason
@@ -51,17 +61,20 @@ class TenderingReasonResource(resources.ModelResource):
 
 class CftaExceptionResource(resources.ModelResource):
 
+
     class Meta:
         model = models.CftaException
 
 
 class ValueThresholdResource(resources.ModelResource):
 
+
     class Meta:
         model = models.ValueThreshold
 
 
 class OrganizationResource(resources.ModelResource):
+
 
     class Meta:
         model = models.Organization
@@ -102,6 +115,7 @@ class CodeOrganizationExclusionAdmin(ImportExportModelAdmin):
     list_display_links = ['__str__']
     search_fields = ['code']
 
+
 @admin.register(models.CommodityType)
 class CommodityTypeAdmin(ImportExportModelAdmin, TranslationAdmin):
     resource_class = CommodityTypeResource
@@ -119,6 +133,7 @@ class CodeAdmin(ImportExportModelAdmin, TranslationAdmin):
     list_display = lst
     list_editable = list(filter(lambda x: x != 'id', lst))
     list_display_links = ['id']
+    ordering = ['code']
 
 
 @admin.register(models.GeneralException)

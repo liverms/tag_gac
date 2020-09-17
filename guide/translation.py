@@ -1,6 +1,15 @@
 import guide.models as models
 from modeltranslation.translator import register, TranslationOptions
 
+"""Provide TranslationOptions with the name of the field
+that should be translated and then the required languages.
+
+This automatically takes your models and adds translated fields
+For instance in Organization there is a column for the organization 
+name (like Fisheries and Oceans).  This will add name_en and name_fr
+fields to this model so you end up with 3 name fields.
+"""
+
 
 @register(models.Organization)
 class OrganizationTO(TranslationOptions):
