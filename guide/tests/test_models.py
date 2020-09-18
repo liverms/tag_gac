@@ -1,6 +1,11 @@
-from django.test import TestCase
-from guide.models import Code, GeneralException, CftaException, LimitedTenderingReason, Organization, CommodityType, ValueThreshold, GoodsCoverage, ConstructionCoverage, CodeOrganizationExclusion
 import unittest
+
+from django.test import TestCase
+
+from guide.models import (CftaException, Code, CodeOrganizationExclusion,
+                          CommodityType, ConstructionCoverage,
+                          GeneralException, GoodsCoverage,
+                          LimitedTenderingReason, Organization, ValueThreshold)
 
 # models tests
 
@@ -68,4 +73,3 @@ class ModelTest(TestCase):
         model_string = CodeOrganizationExclusion.objects.get(id=1)
         self.assertEqual(str(model_string), model_string.__str__())
         self.assertTrue(isinstance(model_string, CodeOrganizationExclusion))
-

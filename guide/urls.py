@@ -1,7 +1,10 @@
 
 from django.urls import path, re_path
-from guide.views import FORMS, url_name, done_step_name, TradeForm, lt_condition, EntitiesAutocomplete, TypeAutocomplete, CodeAutocomplete, OpenPDF
 from django.views.generic.base import RedirectView
+
+from guide.views import (FORMS, CodeAutocomplete, EntitiesAutocomplete,
+                         OpenPDF, TradeForm, TypeAutocomplete, done_step_name,
+                         lt_condition, url_name)
 
 #This is required to conditionally render the limited tendering form.
 trade_wizard = TradeForm.as_view(

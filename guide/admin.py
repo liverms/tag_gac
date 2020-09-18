@@ -1,9 +1,11 @@
 from django.contrib import admin
-import guide.models as models
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from modeltranslation.admin import TranslationAdmin
+
+import guide.models as models
 from guide.models import AGREEMENTS_FIELDS
+
 
 """Model resources defines how objects are mapped to their 
 import and export representations and handle importing and exporting data.
@@ -113,7 +115,7 @@ class CodeOrganizationExclusionAdmin(ImportExportModelAdmin):
     list_display = lst
     list_editable = AGREEMENTS_FIELDS
     list_display_links = ['__str__']
-    search_fields = ['code']
+    search_fields = ['code_fk__code', 'org_fk__name']
 
 
 @admin.register(models.CommodityType)
@@ -192,4 +194,3 @@ class OrganizationAdmin(ImportExportModelAdmin, TranslationAdmin):
     list_display = lst
     list_editable = list(filter(lambda x: x != 'id', lst))
     list_display_links = ['id']
-

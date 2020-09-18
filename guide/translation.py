@@ -1,5 +1,7 @@
+from modeltranslation.translator import TranslationOptions, register
+
 import guide.models as models
-from modeltranslation.translator import register, TranslationOptions
+
 
 """Provide TranslationOptions with the name of the field
 that should be translated and then the required languages.

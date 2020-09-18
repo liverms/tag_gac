@@ -1,8 +1,22 @@
-from guide.views import FORMS, construction_coverage, exceptions_rule, goods_coverage, services_coverage, code_org_exclusion, set_exception_false, set_code_false, set_true, code_rule, create_agreement_dict, determine_final_coverage, get_coverage, get_output_text, OpenPDF, CodeAutocomplete, EntitiesAutocomplete, TypeAutocomplete, lt_condition, TradeForm, organization_rule, value_threshold_rule
-from guide.models import Organization, CommodityType, Code, ValueThreshold, LimitedTenderingReason, GeneralException, CftaException, GoodsCoverage, ConstructionCoverage, CodeOrganizationExclusion, AGREEMENTS_FIELDS
-from guide.forms import RequiredFieldsForm, GeneralExceptionForm, CftaExceptionForm, LimitedTenderingForm
-from django.test import TestCase
 import unittest
+
+from django.test import TestCase
+
+from guide.forms import (CftaExceptionForm, GeneralExceptionForm,
+                         LimitedTenderingForm, RequiredFieldsForm)
+from guide.models import (AGREEMENTS_FIELDS, CftaException, Code,
+                          CodeOrganizationExclusion, CommodityType,
+                          ConstructionCoverage, GeneralException,
+                          GoodsCoverage, LimitedTenderingReason, Organization,
+                          ValueThreshold)
+from guide.views import (FORMS, CodeAutocomplete, EntitiesAutocomplete,
+                         OpenPDF, TradeForm, TypeAutocomplete,
+                         code_org_exclusion, code_rule, construction_coverage,
+                         create_agreement_dict, determine_final_coverage,
+                         exceptions_rule, get_coverage, get_output_text,
+                         goods_coverage, lt_condition, organization_rule,
+                         services_coverage, set_code_false,
+                         set_exception_false, set_true, value_threshold_rule)
 
 
 class ViewTests(TestCase):

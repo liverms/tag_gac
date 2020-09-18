@@ -1,5 +1,6 @@
 from django.test import TestCase
-from django.urls import reverse, resolve
+from django.urls import resolve, reverse
+
 
 class UrlsTest(TestCase):
     '''
@@ -116,6 +117,3 @@ class UrlsTest(TestCase):
         self.assertEqual(url, '/tag/form/')
         resolver = resolve('/tag/form/')
         self.assertEqual(resolver.view_name, 'guide:form_start')
-
-
-

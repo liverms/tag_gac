@@ -1,15 +1,20 @@
-from django.shortcuts import render
-from guide.models import Code, GeneralException, CftaException, LimitedTenderingReason, Organization, CommodityType, ValueThreshold, GoodsCoverage, ConstructionCoverage, CodeOrganizationExclusion
-from guide.forms import RequiredFieldsForm, GeneralExceptionForm, LimitedTenderingForm, CftaExceptionForm
-from formtools.wizard.views import NamedUrlCookieWizardView
-from django.http import HttpResponse
-from dal import autocomplete
-from django.views.generic import View
-from guide.models import AGREEMENTS_FIELDS
 from io import BytesIO
+
+from dal import autocomplete
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.template.loader import get_template
+from django.views.generic import View
+from formtools.wizard.views import NamedUrlCookieWizardView
 from xhtml2pdf import pisa
+
+from guide.forms import (CftaExceptionForm, GeneralExceptionForm,
+                         LimitedTenderingForm, RequiredFieldsForm)
+from guide.models import (AGREEMENTS_FIELDS, CftaException, Code,
+                          CodeOrganizationExclusion, CommodityType,
+                          ConstructionCoverage, GeneralException,
+                          GoodsCoverage, LimitedTenderingReason, Organization,
+                          ValueThreshold)
 
 FORMS = [("0", RequiredFieldsForm),
          ("1", GeneralExceptionForm),

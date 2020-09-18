@@ -6,6 +6,10 @@ class CustomLangMiddleware(MiddlewareMixin):
     """This controls whether the french or english page
     is loaded.
 
+    add 'tag_gac.middleware.CustomLangMiddleware' to the 
+    MIDDLEWARE in settings, it must go after 
+    'django.middleware.locale.LocaleMiddleware'
+
     Args:
         MiddlewareMixin ([class]): MiddlewareMixin class
     """

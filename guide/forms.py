@@ -1,8 +1,11 @@
+from dal import autocomplete
 from django import forms
 from django.forms.forms import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from guide.models import Organization, Code, GeneralException, LimitedTenderingReason, CftaException, CommodityType
-from dal import autocomplete
+
+from guide.models import (
+    CftaException, Code, CommodityType, GeneralException,
+    LimitedTenderingReason, Organization)
 
 estimated_value_label = _('What is the total estimated value of the procurement? ')
 entities_label = _('Who is the procuring entity?')
@@ -138,6 +141,3 @@ class CftaExceptionForm(forms.Form):
         label = cfta_exceptions_label,
         required = False
     )
-
-
-

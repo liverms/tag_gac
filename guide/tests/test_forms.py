@@ -1,7 +1,17 @@
 from django.test import TestCase
-from guide.models import Code, GeneralException, CftaException, LimitedTenderingReason, Organization, CommodityType, ValueThreshold, GoodsCoverage, ConstructionCoverage, CodeOrganizationExclusion
-from guide.forms import RequiredFieldsForm, GeneralExceptionForm, CftaExceptionForm, LimitedTenderingForm, estimated_value_label, entities_label, type_label, code_label, general_exceptions_label, cfta_exceptions_label, limited_tendering_label, estimated_value_error, generic_error
 from django.urls import reverse
+
+from guide.forms import (CftaExceptionForm, GeneralExceptionForm,
+                         LimitedTenderingForm, RequiredFieldsForm,
+                         cfta_exceptions_label, code_label, entities_label,
+                         estimated_value_error, estimated_value_label,
+                         general_exceptions_label, generic_error,
+                         limited_tendering_label, type_label)
+from guide.models import (CftaException, Code, CodeOrganizationExclusion,
+                          CommodityType, ConstructionCoverage,
+                          GeneralException, GoodsCoverage,
+                          LimitedTenderingReason, Organization, ValueThreshold)
+
 
 class FormsTest(TestCase):
     urls = 'django.contrib.formtools.tests.wizard.wizardtests.urls'

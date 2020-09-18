@@ -254,23 +254,23 @@
                     <ul>
                         <li>
                             {# Translators: Results page. First explanation of details #}
-                            {% trans "Estimated Value - 'True' indicates that the estimated value is equal to or greater than the dollar threshold for the trade agreement.  'False' indicates the estimated value is less than the dollar threshold for the trade agreement." %}
+                            {% trans "Estimated Value - 'Covered' indicates that the estimated value is equal to or greater than the dollar threshold for the trade agreement.  'Not Covered' indicates the estimated value is less than the dollar threshold for the trade agreement." %}
                         </li>
                         <li>
                             {# Translators: Results page. Second explanation of details #}
-                            {% trans "Entities - 'True' indicates the entity is covered under the trade agreement.  'False' indicates the entity is not covered under the specific trade agreement." %}
+                            {% trans "Entities - 'Covered' indicates the entity is covered under the trade agreement.  'Not Covered' indicates the entity is not covered under the specific trade agreement." %}
                         </li>
                         <li>
                             {# Translators: Results page. Third explanation of details #}
-                            {% trans "Commodity Code - 'True' indicates the commodity code is covered under the trade agreement.  'False' indicates the commodity code is not covered under the trade agreement." %}
+                            {% trans "Commodity Code - 'Covered' indicates the commodity code is covered under the trade agreement.  'Not Covered' indicates the commodity code is not covered under the trade agreement." %}
                         </li>
                         <li>
                             {# Translators: Results page. Fourth explanation of details #}
-                            {% trans "General Exceptions - 'True' indicates no applicable trade agreement exceptions apply. 'False' indicates one or more trade agreement exception(s) apply." %}
+                            {% trans "General Exceptions - 'Covered' indicates no applicable trade agreement exceptions apply. 'Not Covered' indicates one or more trade agreement exception(s) apply." %}
                         </li>
                         <li>
                             {# Translators: Results page. Firth explanation of details #}
-                            {% trans "CFTA Exceptions - 'True' indicates no CFTA exceptions apply.  'False' indicates one or more CFTA exceptions apply.  This only appears for CFTA." %}
+                            {% trans "CFTA Exceptions - 'Covered' indicates no CFTA exceptions apply.  'Not Covered' indicates one or more CFTA exceptions apply.  This only appears for CFTA." %}
                         </li>
                     </ul>
                     {% for k1, v1 in tables.items %}
@@ -297,7 +297,7 @@
                                                 {% for k2, v2 in v1.items %}   
                                                     <tr>
                                                         <td class="text-left">{{ k2 }}</td>
-                                                        <td class="text-left">{{ v2 }}</td>
+                                                        <td class="text-left">{{ v2|yesno:"Covered, Not Covered, Maybe Covered" }}</td>
                                                     </tr>
                                                 {% endfor %}
                                             </tbody>
